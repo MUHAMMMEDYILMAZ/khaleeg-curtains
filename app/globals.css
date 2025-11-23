@@ -120,3 +120,79 @@
     @apply bg-background text-foreground;
   }
 }
+ details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .chevron-mobile {
+  transform: rotate(180deg);
+}
+
+@keyframes glowingPulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(196, 106, 82, 0.45),
+      0 0 8px 2px rgba(196, 106, 82, 0.25);
+  }
+
+  50% {
+    transform: scale(1.15);
+    box-shadow:
+      0 0 12px 6px rgba(196, 106, 82, 0.35),
+      0 0 25px 10px rgba(196, 106, 82, 0.25);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(196, 106, 82, 0.45),
+      0 0 8px 2px rgba(196, 106, 82, 0.25);
+  }
+}
+
+@keyframes glowingPulseGreen {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(37, 211, 102, 0.45),
+      0 0 8px 2px rgba(37, 211, 102, 0.25);
+  }
+
+  50% {
+    transform: scale(1.15);
+    box-shadow:
+      0 0 12px 6px rgba(37, 211, 102, 0.35),
+      0 0 25px 10px rgba(37, 211, 102, 0.25);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(37, 211, 102, 0.45),
+      0 0 8px 2px rgba(37, 211, 102, 0.25);
+  }
+}
+
+.glow-red {
+  animation: glowingPulse 2s infinite ease-in-out;
+}
+
+.glow-green {
+  animation: glowingPulseGreen 2s infinite ease-in-out;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-slide {
+  animation: fadeSlideUp 0.9s ease-out forwards;
+}

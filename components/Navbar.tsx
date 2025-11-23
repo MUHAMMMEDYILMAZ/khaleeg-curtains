@@ -1,25 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // Refs للـ dropdown + mobile menu
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll Listener
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close dropdown & mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      // Close desktop dropdown
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setDropdown(false);
+      }
+
+      // Close mobile menu
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) {
+        setOpen(false);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -32,24 +53,89 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
 
-        {/* Logo Section */}
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-[#C46A52]/20 border border-[#C46A52]/40" />
           <span className="text-lg font-semibold tracking-wide text-[#1A1A1A]">
-            الخليج للستائر
+            الخليج للديكور
           </span>
         </Link>
 
         {/* Desktop Links */}
-        <nav className="hidden md:flex gap-6 text-sm text-[#4A4A4A]">
-          <Link href="#hero" className="hover:text-[#C46A52] transition">الرئيسية</Link>
-          <Link href="#about" className="hover:text-[#C46A52] transition">من نحن</Link>
-          <Link href="#types" className="hover:text-[#C46A52] transition">أنواع الستائر</Link>
-          <Link href="#gallery" className="hover:text-[#C46A52] transition">أعمالنا</Link>
-          <Link href="#contact" className="hover:text-[#C46A52] transition">تواصل</Link>
+        <nav className="hidden md:flex gap-6 text-sm text-[#4A4A4A] items-center">
+
+          <Link href="/" className="hover:text-[#C46A52] transition">
+            الرئيسية
+          </Link>
+
+          {/* Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdown(!dropdown)}
+              className="flex items-center gap-1 hover:text-[#C46A52] transition"
+            >
+              الأقسام
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-200 ${
+                  dropdown ? "rotate-180" : "rotate-0"
+                }`}
+              />
+            </button>
+
+            {dropdown && (
+              <div className="absolute right-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md py-2 z-40">
+
+                <Link
+                  href="/curtains"
+                  className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
+                  onClick={() => setDropdown(false)}
+                >
+                  ستائر
+                </Link>
+
+                <Link
+                  href="/bedrooms"
+                  className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
+                  onClick={() => setDropdown(false)}
+                >
+                  غرف نوم
+                </Link>
+
+                <Link
+                  href="/sofas"
+                  className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
+                  onClick={() => setDropdown(false)}
+                >
+                  كنب
+                </Link>
+
+                <Link
+                  href="/wall-covering"
+                  className="block px-6 py-2 hover:text-[#C46A52]"
+                  onClick={() => setDropdown(false)}
+                >
+                  تجليد جدران
+                </Link>
+
+              </div>
+            )}
+          </div>
+
+          <Link href="#about" className="hover:text-[#C46A52] transition">
+            من نحن
+          </Link>
+
+          <Link href="#gallery" className="hover:text-[#C46A52] transition">
+            أعمالنا
+          </Link>
+
+          <Link href="#contact" className="hover:text-[#C46A52] transition">
+            تواصل
+          </Link>
         </nav>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <Link
           href="#contact"
           className="hidden md:block rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-1.5 text-sm font-semibold hover:bg-[#C46A52] hover:text-white transition"
@@ -57,64 +143,88 @@ export default function Navbar() {
           احجز زيارة
         </Link>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-[#1A1A1A]"
-          onClick={() => setOpen(!open)}
-        >
+        {/* Mobile Button */}
+        <button className="md:hidden text-[#1A1A1A]" onClick={() => setOpen(!open)}>
           <Menu size={24} />
         </button>
       </div>
 
       {/* Mobile Menu */}
-     {open && (
-  <div className="md:hidden bg-[#F7F3EE] border-t border-[#E8E2DA] px-4 py-4 text-sm text-[#4A4A4A]">
-    
-    <Link
-      href="#hero"
-      className="flex items-center py-3 border-b border-[#E8E2DA]"
-    >
-      الرئيسية
-    </Link>
+      {open && (
+        <div
+          ref={mobileMenuRef}
+          className="md:hidden bg-[#F7F3EE] border-t border-[#E8E2DA] px-4 py-4 text-sm text-[#4A4A4A]
+                     max-h-[50vh] overflow-y-auto rounded-b-xl shadow-xl"
+        >
 
-    <Link
-      href="#about"
-      className="flex items-center py-3 border-b border-[#E8E2DA]"
-    >
-      من نحن
-    </Link>
+          <Link href="/" className="flex py-3 border-b border-[#E8E2DA]">
+            الرئيسية
+          </Link>
 
-    <Link
-      href="#types"
-      className="flex items-center py-3 border-b border-[#E8E2DA]"
-    >
-      أنواع الستائر
-    </Link>
+          {/* Mobile Dropdown */}
+          <details className="py-3 border-b border-[#E8E2DA]">
+            <summary className="cursor-pointer flex items-center gap-2">
+              <span>الأقسام</span>
 
-    <Link
-      href="#gallery"
-      className="flex items-center py-3 border-b border-[#E8E2DA]"
-    >
-      أعمالنا
-    </Link>
+              <ChevronDown
+                size={18}
+                className="chevron-mobile transition-transform duration-200 text-[#555]"
+              />
+            </summary>
 
-    <Link
-      href="#contact"
-      className="flex items-center py-3 border-b border-[#E8E2DA]"
-    >
-      تواصل
-    </Link>
+            <div className="mt-2 flex flex-col text-[#3A3A3A]">
 
-    <Link
-      href="#contact"
-      className="block text-center mt-4 rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-2 font-semibold hover:bg-[#C46A52] hover:text-white transition"
-    >
-      احجز زيارة
-    </Link>
+              <Link
+                href="/curtains"
+                className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
+              >
+                ستائر
+              </Link>
 
-  </div>
-)}
+              <Link
+                href="/bedrooms"
+                className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
+              >
+                غرف نوم
+              </Link>
 
+              <Link
+                href="/sofas"
+                className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
+              >
+                كنب
+              </Link>
+
+              <Link
+                href="/wall-covering"
+                className="py-2 pr-4 hover:text-[#C46A52]"
+              >
+                تجليد جدران
+              </Link>
+
+            </div>
+          </details>
+
+          <Link href="#about" className="flex py-3 border-b border-[#E8E2DA]">
+            من نحن
+          </Link>
+
+          <Link href="#gallery" className="flex py-3 border-b border-[#E8E2DA]">
+            أعمالنا
+          </Link>
+
+          <Link href="#contact" className="flex py-3 border-b border-[#E8E2DA]">
+            تواصل
+          </Link>
+
+          <Link
+            href="#contact"
+            className="block text-center mt-4 rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-2 font-semibold hover:bg-[#C46A52] hover:text-white transition"
+          >
+            احجز زيارة
+          </Link>
+        </div>
+      )}
     </header>
   );
 }

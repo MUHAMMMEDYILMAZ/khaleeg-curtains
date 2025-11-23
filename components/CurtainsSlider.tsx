@@ -5,10 +5,10 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  "/curtain-placeholder.jpg",
-  "/curtain-placeholder.jpg",
-  "/curtain-placeholder.jpg",
-  "/curtain-placeholder.jpg",
+  "/A_collage_of_four_interior_design_photographs_show.png",
+  "/A_collage_of_four_interior_design_photographs_show.png",
+  "/A_collage_of_four_interior_design_photographs_show.png",
+  "/A_collage_of_four_interior_design_photographs_show.png",
 ];
 
 export default function CurtainsSlider() {
@@ -23,7 +23,7 @@ export default function CurtainsSlider() {
       <div className="max-w-5xl mx-auto px-6">
 
         <h2 className="text-3xl md:text-4xl font-semibold text-[#1A1A1A] mb-10">
-          معرض الستائر
+          مختاراتنا من أجمل التصاميم
         </h2>
 
         <div className="relative w-full h-[380px] md:h-[450px] rounded-3xl overflow-hidden border border-[#E8E2DA] bg-[#EFE7DF]">
@@ -32,7 +32,7 @@ export default function CurtainsSlider() {
           <Image
             key={index}
             src={images[index]}
-            alt="ستائر"
+            alt="أقسام الديكور"
             fill
             className="object-cover transition-all duration-500"
           />

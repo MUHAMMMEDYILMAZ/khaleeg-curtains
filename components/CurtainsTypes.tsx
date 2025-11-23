@@ -1,14 +1,11 @@
 import Link from "next/link";
 import {
-  PanelBottom,
-  SunMoon,
-  Waves,
-  Crown,
-  Layers,
-  Zap,
+  PanelsTopLeft,
+  BedDouble,
+  Armchair,
 } from "lucide-react";
 
-export default function CurtainsTypes() {
+export default function MainCategories() {
   return (
     <section
       id="types"
@@ -17,92 +14,68 @@ export default function CurtainsTypes() {
       <div className="max-w-6xl mx-auto px-6">
 
         <h2 className="text-3xl md:text-4xl font-semibold text-[#1A1A1A] mb-12">
-          أنواع الستائر
+          خدماتنا الرئيسية
         </h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-          {/* Rollers */}
+          {/* Curtains */}
           <Link
-            href="/curtains/roller"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
+            href="/curtains"
+            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
+                       hover:border-[#C46A52] hover:shadow-md transition"
           >
-            <PanelBottom className="text-[#C46A52] mb-4" size={32} />
+            <PanelsTopLeft className="text-[#C46A52] mb-4" size={34} />
             <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر رول
+              الستائر
             </h3>
             <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              عملية وسهلة الاستخدام بخامات متعددة ودرجات تعتيم مختلفة.
+              جميع أنواع الستائر — رول، بلاك آوت، شفاف، كلاسيكي، كهربائي والمزيد.
             </p>
           </Link>
 
-          {/* Blackout */}
+          {/* Bedrooms */}
           <Link
-            href="/curtains/blackout"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
+            href="/bedrooms"
+            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white
+                       hover:border-[#C46A52] hover:shadow-md transition"
           >
-            <SunMoon className="text-[#C46A52] mb-4" size={32} />
+            <BedDouble className="text-[#C46A52] mb-4" size={34} />
             <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر بلاك آوت
+              غرف النوم
             </h3>
             <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              تمنع دخول الضوء بشكل كامل — مثالية لغرف النوم.
+              تصميم وتنفيذ غرف نوم فاخرة بموديلات عصرية وكلاسيكية.
             </p>
           </Link>
 
-          {/* Sheer */}
+          {/* Sofas */}
           <Link
-            href="/curtains/sheer"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
+            href="/sofas"
+            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
+                       hover:border-[#C46A52] hover:shadow-md transition"
           >
-            <Waves className="text-[#C46A52] mb-4" size={32} />
+            <Armchair className="text-[#C46A52] mb-4" size={34} />
             <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر شفافة (Sheer)
+              الكنب
             </h3>
             <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              تسمح بدخول الضوء وتضيف جمالًا ناعمًا للغرفة.
+              كنب مودرن وكلاسيك مع خيارات تفصيل حسب المقاسات المطلوبة.
             </p>
           </Link>
 
-          {/* Classic */}
+          {/* Wall Covering */}
           <Link
-            href="/curtains/classic"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
+            href="/wall-covering"
+            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
+                       hover:border-[#C46A52] hover:shadow-md transition"
           >
-            <Crown className="text-[#C46A52] mb-4" size={32} />
+            <Armchair className="text-[#C46A52] mb-4" size={34} />
             <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر كلاسيكية
+              تجليد الجدران
             </h3>
             <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              أقمشة ثقيلة ولمسات فاخرة تمنح المكان مظهرًا راقيًا.
-            </p>
-          </Link>
-
-          {/* Day & Night */}
-          <Link
-            href="/curtains/day-night"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
-          >
-            <Layers className="text-[#C46A52] mb-4" size={32} />
-            <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر مزدوجة (Day & Night)
-            </h3>
-            <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              مزج مثالي بين الإضاءة والخصوصية بطبقتين متناسقتين.
-            </p>
-          </Link>
-
-          {/* Motor */}
-          <Link
-            href="/curtains/motor"
-            className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white hover:border-[#C46A52] transition"
-          >
-            <Zap className="text-[#C46A52] mb-4" size={32} />
-            <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-              ستائر كهربائية
-            </h3>
-            <p className="text-[#4A4A4A] leading-relaxed text-sm">
-              تحكم كهربائي سلس مع إمكانية الدمج مع أنظمة المنزل الذكي.
+              حلول تغطية الجدران بتصاميم خشبية وعصرية تضيف فخامة للمكان.
             </p>
           </Link>
 

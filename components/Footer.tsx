@@ -3,7 +3,7 @@ import { Phone, Mail, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#EFE7DF] border-t border-[#D8D0C8] mt-20">
+    <footer className="bg-[#EFE7DF] border-t border-[#D8D0C8]">
       <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
 
         {/* LOGO + DESCRIPTION */}
