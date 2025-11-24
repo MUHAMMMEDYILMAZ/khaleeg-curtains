@@ -1,9 +1,5 @@
 import Link from "next/link";
-import {
-  PanelsTopLeft,
-  BedDouble,
-  Armchair,
-} from "lucide-react";
+import { PanelsTopLeft, BedDouble, Armchair, Wallpaper } from "lucide-react";
 
 export default function MainCategories() {
   return (
@@ -21,7 +17,7 @@ export default function MainCategories() {
 
           {/* Curtains */}
           <Link
-            href="/curtains"
+            href="/products/curtains"
             className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
                        hover:border-[#C46A52] hover:shadow-md transition"
           >
@@ -36,7 +32,7 @@ export default function MainCategories() {
 
           {/* Bedrooms */}
           <Link
-            href="/bedrooms"
+            href="/products/bedrooms"
             className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white
                        hover:border-[#C46A52] hover:shadow-md transition"
           >
@@ -51,7 +47,7 @@ export default function MainCategories() {
 
           {/* Sofas */}
           <Link
-            href="/sofas"
+            href="/products/sofas"
             className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
                        hover:border-[#C46A52] hover:shadow-md transition"
           >
@@ -66,11 +62,11 @@ export default function MainCategories() {
 
           {/* Wall Covering */}
           <Link
-            href="/wall-covering"
+            href="/products/walls"
             className="block p-6 rounded-3xl border border-[#E8E2DA] bg-white 
                        hover:border-[#C46A52] hover:shadow-md transition"
           >
-            <Armchair className="text-[#C46A52] mb-4" size={34} />
+            <PanelsTopLeft className="text-[#C46A52] mb-4" size={34} />
             <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
               تجليد الجدران
             </h3>
