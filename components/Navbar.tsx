@@ -128,11 +128,11 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="about" className="hover:text-[#C46A52] transition">
+          <Link href="/about" className="hover:text-[#C46A52] transition">
             من نحن
           </Link>
 
-          <Link href="our-business" className="hover:text-[#C46A52] transition">
+          <Link href="/our-business" className="hover:text-[#C46A52] transition">
             أعمالنا
           </Link>
 
@@ -141,7 +141,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <Link
-          href="contact"
+          href="/contact"
           className="hidden md:block rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-1.5 text-sm font-semibold hover:bg-[#C46A52] hover:text-white transition"
         >
          تواصل معنا
@@ -209,18 +209,18 @@ export default function Navbar() {
             </div>
           </details>
 
-          <Link href="about" className="flex py-3 border-b border-[#E8E2DA]">
+          <Link href="/about" className="flex py-3 border-b border-[#E8E2DA]">
             من نحن
           </Link>
 
-          <Link href="our-business" className="flex py-3 border-b border-[#E8E2DA]">
+          <Link href="/our-business" className="flex py-3 border-b border-[#E8E2DA]">
             أعمالنا
           </Link>
 
          
 
           <Link
-            href="contact"
+            href="/contact"
             className="block text-center mt-4 rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-2 font-semibold hover:bg-[#C46A52] hover:text-white transition"
           >
             تواصل معنا
