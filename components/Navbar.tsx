@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -51,12 +52,17 @@ export default function Navbar() {
           : "bg-[#F7F3EE] border-[#E8E2DA]"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-[#C46A52]/20 border border-[#C46A52]/40" />
-          <span className="text-lg font-semibold tracking-wide text-[#1A1A1A]">
+        <Link href="/" className="flex items-center gap-1">
+             <Image 
+            src="/logoa.png"
+            alt="شعار الخليج للستائر"
+            width={80}
+            height={40}
+          />
+                    <span className="text-lg font-semibold tracking-wide text-[#c46a52]">
             الخليج للديكور
           </span>
         </Link>
@@ -87,7 +93,7 @@ export default function Navbar() {
               <div className="absolute right-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md py-2 z-40">
 
                 <Link
-                  href="/curtains"
+                  href="/products/curtains"
                   className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
                   onClick={() => setDropdown(false)}
                 >
@@ -95,7 +101,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="/bedrooms"
+                  href="/products/bedrooms"
                   className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
                   onClick={() => setDropdown(false)}
                 >
@@ -103,7 +109,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="/sofas"
+                  href="/products/sofas"
                   className="block px-6 py-2 hover:text-[#C46A52] border-b border-[#E8E2DA]"
                   onClick={() => setDropdown(false)}
                 >
@@ -111,7 +117,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="/wall-covering"
+                  href="/products/walls"
                   className="block px-6 py-2 hover:text-[#C46A52]"
                   onClick={() => setDropdown(false)}
                 >
@@ -122,25 +128,23 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="#about" className="hover:text-[#C46A52] transition">
+          <Link href="about" className="hover:text-[#C46A52] transition">
             من نحن
           </Link>
 
-          <Link href="#gallery" className="hover:text-[#C46A52] transition">
+          <Link href="our-business" className="hover:text-[#C46A52] transition">
             أعمالنا
           </Link>
 
-          <Link href="#contact" className="hover:text-[#C46A52] transition">
-            تواصل
-          </Link>
+          
         </nav>
 
         {/* CTA */}
         <Link
-          href="#contact"
+          href="contact"
           className="hidden md:block rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-1.5 text-sm font-semibold hover:bg-[#C46A52] hover:text-white transition"
         >
-          احجز زيارة
+         تواصل معنا
         </Link>
 
         {/* Mobile Button */}
@@ -175,28 +179,28 @@ export default function Navbar() {
             <div className="mt-2 flex flex-col text-[#3A3A3A]">
 
               <Link
-                href="/curtains"
+                href="/products/curtains"
                 className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
               >
                 ستائر
               </Link>
 
               <Link
-                href="/bedrooms"
+                href="/products/curtains"
                 className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
               >
                 غرف نوم
               </Link>
 
               <Link
-                href="/sofas"
+                href="/products/sofas"
                 className="py-2 pr-4 border-b border-[#E8E2DA] hover:text-[#C46A52]"
               >
                 كنب
               </Link>
 
               <Link
-                href="/wall-covering"
+                href="/products/walls"
                 className="py-2 pr-4 hover:text-[#C46A52]"
               >
                 تجليد جدران
@@ -205,23 +209,21 @@ export default function Navbar() {
             </div>
           </details>
 
-          <Link href="#about" className="flex py-3 border-b border-[#E8E2DA]">
+          <Link href="about" className="flex py-3 border-b border-[#E8E2DA]">
             من نحن
           </Link>
 
-          <Link href="#gallery" className="flex py-3 border-b border-[#E8E2DA]">
+          <Link href="our-business" className="flex py-3 border-b border-[#E8E2DA]">
             أعمالنا
           </Link>
 
-          <Link href="#contact" className="flex py-3 border-b border-[#E8E2DA]">
-            تواصل
-          </Link>
+         
 
           <Link
-            href="#contact"
+            href="contact"
             className="block text-center mt-4 rounded-full border border-[#C46A52] text-[#C46A52] px-4 py-2 font-semibold hover:bg-[#C46A52] hover:text-white transition"
           >
-            احجز زيارة
+            تواصل معنا
           </Link>
         </div>
       )}

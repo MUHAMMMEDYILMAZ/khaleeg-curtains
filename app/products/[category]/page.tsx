@@ -1,17 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AutoSlider from "@/components/AutoSlider";
 import { PRODUCTS_DATA } from "@/data/products";
 
-export default async function CategoryPage({
+export default function CategoryPage({
   params,
 }: {
   params: Promise<{ category: string }>;
 }) {
-  const { category } = await params;
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
+  const [categoryResolved, setCategoryResolved] = useState<string | null>(null);
+
+  useEffect(() => {
+    params.then((p) => setCategoryResolved(p.category));
+  }, [params]);
+
+  if (!categoryResolved) return null;
 
   type CategoryKeys = keyof typeof PRODUCTS_DATA;
-  const cat = PRODUCTS_DATA[category as CategoryKeys];
+  const cat = PRODUCTS_DATA[categoryResolved as CategoryKeys];
 
   if (!cat) {
     return <h1 className="p-10 text-2xl">القسم غير موجود</h1>;
@@ -33,12 +48,10 @@ export default async function CategoryPage({
           bg-white/70 backdrop-blur-sm
           rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.08)]
           border border-[#E0D6CC]
-          fade-slide
         "
       >
-
         {/* العنوان والوصف */}
-        <div className="fade-slide">
+        <div className={animate ? "fade-slide-once" : ""}>
           <h1 className="text-4xl font-bold mb-4 text-[#1A1A1A]">
             {cat.title}
           </h1>
@@ -49,19 +62,19 @@ export default async function CategoryPage({
         </div>
 
         {/* السلايدر */}
-        <div className="fade-slide">
+        <div className={animate ? "fade-slide-once" : ""}>
           <AutoSlider images={cat.images} />
         </div>
 
-        {/* المنتج التسويقي */}
+        {/* ⭐ المنتج التسويقي – مع حركة Slide من اليمين */}
         <div
-          className="
-            fade-slide 
+          className={`
             grid md:grid-cols-2 gap-8 items-center 
             p-6 rounded-3xl bg-[#F7F3EE] 
             border border-[#E8E2DA] 
             shadow-md
-          "
+            ${animate ? "slide-from-right" : ""}
+          `}
         >
           <div>
             <h2 className="text-2xl font-semibold mb-3 text-[#1A1A1A]">
@@ -83,34 +96,38 @@ export default async function CategoryPage({
         </div>
 
         {/* الأقسام الفرعية */}
-        <div className="fade-slide">
-          <h2 className="text-3xl font-semibold mb-6 text-[#1A1A1A]">
-            الأقسام الفرعية
-          </h2>
+       <div className={animate ? "fade-slide-once" : ""}>
+  <h2 className="text-3xl font-semibold mb-6 text-[#1A1A1A]">
+    الأنواع
+  </h2>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {cat.subs.map((sub) => (
-              <Link
-                key={sub}
-                href={`/products/${category}/${sub}`}
-                className="
-                  block p-6 rounded-2xl 
-                  border border-[#E6DCD2]
-                  bg-white hover:border-[#C46A52] hover:bg-[#FCF7F4]
-                  transition shadow-sm hover:shadow-md
-                "
-              >
-                <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">
-                  {sub.toUpperCase()}
-                </h3>
+  <div className="grid sm:grid-cols-2 gap-6">
+    {cat.subs.map((sub) => {
+      const info = cat.details.subDetails[sub]; // هنا جبنا التفاصيل الحقيقية
 
-                <p className="text-[#777] text-sm">
-                  اطلع على تفاصيل هذا القسم — نخبة من التصاميم والصور.
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
+      return (
+        <Link
+          key={sub}
+          href={`/products/${categoryResolved}/${sub}`}
+          className="
+            block p-6 rounded-2xl 
+            border border-[#E6DCD2]
+            bg-white hover:border-[#C46A52] hover:bg-[#FCF7F4]
+            transition shadow-sm hover:shadow-md
+          "
+        >
+          <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">
+            {info.name}
+          </h3>
+
+          <p className="text-[#777] text-sm leading-relaxed">
+            {info.description}
+          </p>
+        </Link>
+      );
+    })}
+  </div>
+</div>
 
       </div>
     </div>

@@ -9,24 +9,44 @@ export default function Footer() {
         {/* LOGO + DESCRIPTION */}
         <div>
           <h3 className="text-2xl font-semibold text-[#1A1A1A] mb-3">
-            الخليج للستائر
+            الخليج للديكور
           </h3>
           <p className="text-[#4A4A4A] text-sm leading-relaxed">
-            متخصصون في تصميم وتنفيذ وتركيب الستائر بجميع أنواعها بخامات عالية الجودة ولمسات احترافية.
+            نقدم حلولاً متكاملة للديكور الداخلي تشمل الستائر، غرف النوم، الكنب،
+            وتكسية الجدران — بجودة عالية وتنفيذ احترافي يناسب جميع الأذواق.
           </p>
         </div>
 
         {/* QUICK LINKS */}
         <div>
           <h4 className="text-lg font-semibold text-[#1A1A1A] mb-4">
-            روابط سريعة
+            روابط مهمة
           </h4>
           <ul className="text-[#4A4A4A] space-y-3 text-sm">
-            <li><Link href="#hero" className="hover:text-[#C46A52] transition">الرئيسية</Link></li>
-            <li><Link href="#types" className="hover:text-[#C46A52] transition">أنواع الستائر</Link></li>
-            <li><Link href="#gallery" className="hover:text-[#C46A52] transition">معرض الأعمال</Link></li>
-            <li><Link href="/about" className="hover:text-[#C46A52] transition">من نحن</Link></li>
-            <li><Link href="#contact" className="hover:text-[#C46A52] transition">تواصل معنا</Link></li>
+
+            <li>
+              <Link href="/" className="hover:text-[#C46A52] transition">
+                الرئيسية
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/products" className="hover:text-[#C46A52] transition">
+                جميع الأقسام
+              </Link>
+            </li>
+            <li>
+              <Link href="/our-business" className="hover:text-[#C46A52] transition">
+                أعمالنا
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/#contact" className="hover:text-[#C46A52] transition">
+                تواصل معنا
+              </Link>
+            </li>
+
           </ul>
         </div>
 
@@ -44,13 +64,17 @@ export default function Footer() {
 
             <li className="flex items-center gap-2">
               <Mail size={18} className="text-[#C46A52]" />
-              <span>info@khaleejcurtains.com</span>
+              <span>info@khaleejdecor.com</span>
             </li>
 
             <li>
-              <Link href="https://instagram.com" target="_blank" className="flex items-center gap-2 hover:text-[#C46A52] transition">
+              <Link
+                href="https://instagram.com"
+                target="_blank"
+                className="flex items-center gap-2 hover:text-[#C46A52] transition"
+              >
                 <Instagram size={18} className="text-[#C46A52]" />
-                <span>@khaleej_curtains</span>
+                <span>@khaleej_decor</span>
               </Link>
             </li>
           </ul>
@@ -60,7 +84,7 @@ export default function Footer() {
 
       <div className="border-t border-[#D8D0C8]">
         <p className="text-center text-[#6A6A6A] text-sm py-4">
-          © {new Date().getFullYear()} الخليج للستائر — جميع الحقوق محفوظة.
+          © {new Date().getFullYear()} الخليج للديكور — جميع الحقوق محفوظة.
         </p>
       </div>
     </footer>

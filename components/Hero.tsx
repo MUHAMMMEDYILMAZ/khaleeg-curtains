@@ -25,16 +25,16 @@ export default function Hero() {
           {/* BUTTONS */}
           <div className="flex gap-4 mb-10">
             <a
-              href="#gallery"
+              href="/our-business"
               className="px-7 py-3 rounded-full bg-[#C46A52] text-white text-sm font-medium hover:bg-[#B95D47] transition"
             >
               شاهد أعمالنا
             </a>
             <a
-              href="#contact"
+              href="/products"
               className="px-7 py-3 rounded-full border border-[#C46A52] text-[#C46A52] text-sm font-medium hover:bg-[#C46A52] hover:text-white transition"
             >
-              احجز زيارة
+              منتجاتنا 
             </a>
           </div>
 
